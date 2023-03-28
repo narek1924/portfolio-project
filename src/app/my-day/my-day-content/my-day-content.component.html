@@ -1,0 +1,57 @@
+<div class="my-day-content">
+  <div class="greeting">
+    <div class="title-container">
+      <div class="title">
+        Good {{ greetingTime }}, Username<span class="title-end">&#x2022;</span>
+      </div>
+      <div class="subtitle">What will you accomplish today?</div>
+    </div>
+    <div class="calendar">
+      <div class="calendar-weekday">
+        {{ dayOfWeekString }}
+      </div>
+      <div class="calendar-day">{{ dayOfMonth }}</div>
+      <div class="calendar-month">{{ month }}</div>
+    </div>
+  </div>
+  <div class="form-with-tasks">
+    <div class="content-wrapper">
+      <div *ngIf="myDayTasks.length">
+        <mat-card
+          @item
+          class="task-card"
+          *ngFor="let task of myDayTasks; let i = index"
+          (click)="delete(i)"
+        >
+          <mat-card-subtitle class="task-card-subtitle">{{
+            task.list
+          }}</mat-card-subtitle>
+          <mat-card-content class="task-card-name">{{
+            task.name
+          }}</mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <form [formGroup]="taskName">
+      <mat-form-field appearance="fill" class="input">
+        <span
+          [@decorationAnimation]="
+            !myDayTasks.length ? 'emptyWrapper' : 'nonEmptyWrapper'
+          "
+          class="content-decoration"
+        ></span>
+        <input
+          #taskNameInput
+          formControlName="taskNameForm"
+          class="input"
+          placeholder="+ &nbsp; Add task"
+          matInput
+          (keypress)="createTask($event)"
+          (focus)="taskNameInput.placeholder = 'Enter name here'"
+          (blur)="taskNameInput.placeholder = '+ &nbsp; Add task'"
+        />
+      </mat-form-field>
+    </form>
+  </div>
+</div>
+placeholder="+ &nbsp; Add task"

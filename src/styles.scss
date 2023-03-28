@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+  background-image: url("/assets/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0;
+
+  font-family: "Inter-local", "Helvetica Neue", Helvetica, Arial, "Roboto",
+    sans-serif;
+}
+:root {
+  --hover-color: #efeeee;
+  --brand-color: #4d8ef0;
+}
+app-hamburger-menu {
+  z-index: 200;
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+.mat-drawer-inner-container::-webkit-scrollbar {
+  display: none;
+}
+.mat-drawer-container {
+  background: none;
+}
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  border-radius: 8px !important;
+  padding: 0 0.75em 0 0.75em !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04), 0 2px 18px rgba(0, 0, 0, 0.08);
+}
+root {
+  --brand-color: ##0083ff;
+}

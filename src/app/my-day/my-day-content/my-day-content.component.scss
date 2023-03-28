@@ -1,0 +1,167 @@
+.my-day-content {
+  width: 640px;
+  height: calc(100vh - 24px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.greeting {
+  height: 152px;
+}
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 36px;
+}
+.title-end {
+  font-size: 30px;
+  color: var(--brand-color);
+  position: absolute;
+  top: 0.2em;
+}
+.subtitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #d8d8d8;
+  margin-bottom: 10px;
+}
+.calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+.calendar-weekday {
+  font-weight: 600;
+  font-size: 15px;
+  color: #9b9b9b;
+  text-transform: uppercase;
+  margin-bottom: -3px;
+}
+.calendar-day {
+  font-weight: 700;
+  font-size: 41.31px;
+  line-height: 44.26px;
+  margin-bottom: -3px;
+}
+.calendar-month {
+  font-size: 15px;
+  line-height: 1.2;
+  color: #d8d8d8;
+}
+.form-with-tasks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 172px);
+}
+.content-wrapper {
+  flex: 1;
+  overflow-y: auto;
+}
+.task-card {
+  height: 60px;
+  line-height: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02), 0 2px 18px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  margin-bottom: 7px;
+  box-sizing: border-box;
+}
+.task-card-subtitle {
+  font-size: 9px;
+}
+.task-card-name {
+  font-size: 17px;
+}
+.content-decoration {
+  width: 360px;
+  height: 180px;
+  border-top-left-radius: 180px;
+  border-top-right-radius: 180px;
+  background-color: var(--brand-color);
+  position: absolute;
+  bottom: 55px;
+  left: 50%;
+  margin-left: -180px;
+}
+.input {
+  position: relative;
+  width: 100%;
+}
+@media only screen and (max-width: 1000px) {
+  .my-day-content {
+    width: 550px;
+  }
+}
+@media only screen and (max-width: 870px) {
+  .my-day-content {
+    width: 500px;
+  }
+  .content-decoration {
+    width: 300px;
+    height: 150px;
+    margin-left: -150px;
+  }
+}
+@media only screen and (max-width: 726px) {
+  .my-day-content {
+    width: 450px;
+  }
+}
+@media only screen and (max-width: 620px) {
+  .my-day-content {
+    width: 400px;
+  }
+  .content-decoration {
+    width: 240px;
+    height: 120px;
+    margin-left: -120px;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .my-day-content {
+    width: 360px;
+  }
+  .title {
+    font-size: 22px;
+  }
+  .title-end {
+    font-size: 26px;
+  }
+  .subtitle {
+    font-size: 22px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .my-day-content {
+    width: 320px;
+  }
+  .content-decoration {
+    width: 220px;
+    height: 110px;
+    margin-left: -110px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .my-day-content {
+    width: 280px;
+  }
+  .content-decoration {
+    width: 220px;
+    height: 110px;
+    margin-left: -110px;
+  }
+  .title {
+    font-size: 18px;
+  }
+  .title-end {
+    font-size: 24px;
+  }
+  .subtitle {
+    font-size: 18px;
+  }
+}

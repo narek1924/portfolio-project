@@ -1,0 +1,22 @@
+<mat-sidenav-container [hasBackdrop]="false">
+  <mat-sidenav
+    #sidenav
+    [opened]="isOpened"
+    mode="side"
+    (mouseleave)="toggle($event)"
+  >
+    <app-side-bar></app-side-bar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="sidenav-content">
+      <div
+        [@openClose]="isOpened ? 'closed' : 'opened'"
+        class="sidenav-closed"
+        (mouseenter)="toggle($event)"
+      ></div>
+      <div class="routing-content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

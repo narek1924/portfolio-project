@@ -1,0 +1,115 @@
+.sidenav-container {
+  width: 240px;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.sidenav {
+  height: 100%;
+  width: 240px;
+  box-sizing: border-box;
+  padding-top: 24px;
+
+  position: fixed;
+  z-index: 15;
+
+  line-height: 1.4;
+  font-size: 15px;
+}
+
+.profile {
+  padding: 0 40px 0 20px;
+  margin-bottom: 16px;
+}
+.settings-icon {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+.profile_button {
+  border: none;
+  background-color: inherit;
+
+  padding: 0 40px 0 50px;
+  font-weight: 600;
+  font-size: inherit;
+  font-family: inherit;
+
+  cursor: pointer;
+}
+.keep-open-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border: none;
+  border-radius: 50%;
+  background-color: inherit;
+
+  cursor: pointer;
+  &:hover {
+    background-color: var(--hover-color);
+  }
+}
+.sidebar-items {
+  padding: 0;
+
+  list-style-type: none;
+}
+.sidebar-links {
+  padding: 0;
+
+  list-style-type: none;
+}
+.sidebar-link {
+  display: flex;
+  align-items: center;
+
+  padding: 0 24px 0 20px;
+  height: 40px;
+
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    background-color: var(--hover-color);
+  }
+}
+.svg-icon {
+  padding-right: 7px;
+}
+.link-title {
+  font-size: 15px;
+}
+.sidebar-item-heading {
+  &:hover {
+    background-color: var(--hover-color);
+  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 40px;
+  padding: 0 12px 0 20px;
+  margin: 0;
+  border: none;
+  background-color: inherit;
+
+  cursor: pointer;
+}
+.sidebar-item-heading > p {
+  font-size: 17px;
+  font-weight: 600;
+}
+.plus-icon {
+  filter: invert(69%) sepia(10%) saturate(14%) hue-rotate(345deg)
+    brightness(90%) contrast(83%);
+  &:hover {
+    filter: invert(56%) sepia(35%) saturate(6855%) hue-rotate(200deg)
+      brightness(105%) contrast(88%);
+  }
+}

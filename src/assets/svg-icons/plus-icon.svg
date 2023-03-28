@@ -1,0 +1,20 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="24"
+  height="24"
+>
+  <defs>
+    <path
+      id="id_578"
+      d="M11.6 5.2a.8.8 0 0 1 .794.7l.006.1-.001 4.799 4.801.001a.8.8 0 0 1 .1 1.594l-.1.006-4.801-.001.001 4.801a.8.8 0 0 1-1.594.1l-.006-.1-.001-4.801L6 12.4a.8.8 0 0 1-.1-1.594L6 10.8l4.799-.001L10.8 6a.8.8 0 0 1 .8-.8z"
+    ></path>
+  </defs>
+  <g fill="currentColor" fill-rule="evenodd">
+    <mask id="id_579" fill="currentColor"><use xlink:href="#id_578"></use></mask>
+    <use fill="currentColor" fill-rule="nonzero" xlink:href="#id_578"></use>
+    <g fill="currentColor" mask="url(#id_579)">
+      <path d="M0 0h24v24H0z"></path>
+    </g>
+  </g>
+</svg>

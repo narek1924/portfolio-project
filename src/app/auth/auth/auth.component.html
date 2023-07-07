@@ -146,7 +146,7 @@
         >
           {{ isRegistered ? "Sign in" : "Create account" }}
         </button>
-        <span *ngIf="error">{{ error }}</span>
+        <span *ngIf="error" class="error-text">{{ error }}</span>
       </form>
       <div class="auth-step" *ngIf="passwordReset" @nextStepAnimation>
         <div class="header">

@@ -1,21 +1,32 @@
-<mat-sidenav-container [hasBackdrop]="false">
+<mat-sidenav-container
+  [hasBackdrop]="(isSmallScreen$ | async) ? true : false"
+  (backdropClick)="close()"
+  cdkDropListGroup
+>
   <mat-sidenav
-    #sidenav
-    [opened]="isOpened"
-    mode="side"
+    [opened]="isLogedIn ? isOpened : false"
+    [mode]="(isSmallScreen$ | async) ? 'over' : 'side'"
     (mouseleave)="toggle($event)"
+    position="start"
   >
     <app-side-bar></app-side-bar>
   </mat-sidenav>
+  <mat-sidenav
+    class="suggestions"
+    [opened]="suggestions"
+    mode="side"
+    position="end"
+    ><app-my-day-suggestions *ngIf="suggestions"></app-my-day-suggestions
+  ></mat-sidenav>
   <mat-sidenav-content>
     <div class="sidenav-content">
       <div
-        [@openClose]="isOpened ? 'closed' : 'opened'"
         class="sidenav-closed"
         (mouseenter)="toggle($event)"
+        *ngIf="!isOpened && !(isSmallScreen$ | async)"
       ></div>
       <div class="routing-content">
-        <router-outlet></router-outlet>
+        <router-outlet #outlet="outlet"></router-outlet>
       </div>
     </div>
   </mat-sidenav-content>

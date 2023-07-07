@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="header">
+    <div class="modify-buttons">
+      <div class="header-button">
+        <img
+          class="header-icon"
+          src="/assets/svg-icons/my-day.svg"
+          alt="icon-add-to-my-day"
+          matTooltip="Add to My Day"
+          matTooltipPosition="above"
+          (click)="task.myDay = !task.myDay"
+          [class.checked]="task.myDay"
+        />
+      </div>
+      <div class="header-button">
+        <img
+          class="header-icon"
+          src="/assets/svg-icons/done-icon.svg"
+          alt="icon-done"
+          matTooltip="Mark as done"
+          matTooltipPosition="above"
+          (click)="task.done = !task.done"
+          [class.checked]="task.done"
+        />
+      </div>
+      <div class="header-button">
+        <img
+          class="header-icon"
+          src="/assets/svg-icons/delete-icon.svg"
+          alt="icon-delete-task"
+          matTooltip="Delete task"
+          matTooltipPosition="above"
+          (click)="taskDelete()"
+        />
+      </div>
+    </div>
+    <div class="save-button">
+      <div class="header-button" (click)="saveChanges()">
+        <img
+          class="header-icon"
+          src="/assets/svg-icons/save-icon.svg"
+          alt="icon-save-changes"
+          matTooltip="Save Changes"
+          matTooltipPosition="above"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="textarea-wrapper">
+    <textarea
+      #nameInputField="ngModel"
+      [(ngModel)]="nameInput"
+      (blur)="nameFieldBlur()"
+      class="textarea name"
+      rows="1"
+      [class.task-done]="task.done"
+      appTextareaExpand
+    ></textarea>
+  </div>
+  <div class="cards-wrapper">
+    <div class="status-card" (click)="onOpenDialog('lists')">
+      <img
+        class="card-icon list-icon"
+        [class.icon-task-done]="task.done"
+        src="/assets/svg-icons/list-icon.svg"
+      />
+      <div class="card-text">{{ task.list }}</div>
+    </div>
+    <div class="status-card" (click)="onOpenDialog('priority')">
+      <img
+        class="card-icon priority-icon"
+        [class.icon-task-done]="task.done"
+        src="/assets/svg-icons/hashtag-icon.svg"
+      />
+      <div class="card-text">
+        {{ task.priority ? task.priority.status : "Tags" }}
+      </div>
+    </div>
+  </div>
+  <div class="heading" [class.task-done]="task.done">NOTES</div>
+  <div class="textarea-wrapper">
+    <textarea
+      #notesInputField="ngModel"
+      [(ngModel)]="notesInput"
+      class="textarea notes"
+      rows="1"
+      placeholder="Insert your notes here"
+      appTextareaExpand
+      (blur)="notesInputBlur()"
+      >{{ task.notes ? task.notes : "" }}</textarea
+    >
+  </div>
+  <div class="heading" [class.task-done]="task.done">SUBTASKS</div>
+  <div class="subtasks">
+    <div class="task-card" *ngFor="let subtask of task.subTasks; let i = index">
+      <div class="task-card-content">
+        <input
+          type="checkbox"
+          class="checkbox"
+          [checked]="subtask.done"
+          (change)="checkBoxChanged(i, !subtask.done)"
+        />
+        <input
+          #subtaskNameInput
+          #input="ngModel"
+          [(ngModel)]="subTaskNames[i]"
+          class="subtask-name-input"
+          type="text"
+          [value]="subtask.name"
+          (blur)="subtaskBlur(i, subtask, $event)"
+        />
+        <button
+          (click)="deleteSubtask(i)"
+          class="subtask-delete"
+          *ngIf="subtask.done"
+        >
+          <img src="/assets/svg-icons/close-icon.svg" alt="" />
+        </button>
+      </div>
+    </div>
+    <button class="add-subtask" (click)="addSubtask()">
+      <div class="button-content">
+        <span class="plus-icon">&#43;</span>
+        <div class="add-subtask-text">Add a new subtask</div>
+      </div>
+    </button>
+  </div>
+</div>

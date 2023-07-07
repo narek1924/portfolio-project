@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="header" *ngIf="data === 'connection'">Oops...</div>
+  <div class="header-list" *ngIf="data === 'list'">List Already Exists</div>
+  <div class="text">
+    {{
+      data === "connection"
+        ? "An error occured, check your internet connection and reload the page."
+        : "Oops! It seems that the list you're trying to create already exists. Please choose a different name."
+    }}
+  </div>
+  <button (click)="onClick()">
+    {{ data === "connection" ? "Reload" : "Close" }}
+  </button>
+</div>

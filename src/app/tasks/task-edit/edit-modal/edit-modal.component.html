@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="header">
+    <h3 class="header-text" *ngIf="lists">Move to...</h3>
+    <h3 class="header-text" *ngIf="priorities">Tags</h3>
+  </div>
+  <div *ngIf="lists">
+    <ul class="list">
+      <li
+        class="list-item lists"
+        *ngFor="let list of lists"
+        (click)="returnData('list', list)"
+        [class.selected]="list === current"
+      >
+        <div>{{ list }}</div>
+        <img
+          *ngIf="current === list"
+          class="svg-icon"
+          src="/assets/svg-icons/selected-icon.svg"
+          alt=""
+        />
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="priorities">
+    <ul class="list">
+      <li
+        class="list-item priority"
+        *ngFor="let status of priorities"
+        [style.background-color]="status.color"
+        (click)="returnData('priority', status)"
+        [class.selected]="status === current"
+      >
+        <div>{{ status.status }}</div>
+        <img
+          *ngIf="current === status"
+          class="svg-icon"
+          src="/assets/svg-icons/selected-icon.svg"
+          alt=""
+        />
+      </li>
+    </ul>
+  </div>
+</div>

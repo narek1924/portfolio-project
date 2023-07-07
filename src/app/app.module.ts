@@ -1,18 +1,27 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
-
 import { AppRoutingModule } from './app-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { MyDayComponent } from './my-day/my-day.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularMaterialModule } from './shared/angular-material/angular-material.module';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MyDayContentComponent } from './my-day/my-day-content/my-day-content.component';
-import { TaskCardComponent } from './my-day/my-day-content/task-card/task-card.component';
-import { HamburgerMenuComponent } from './main-page/hamburger-menu/hamburger-menu.component';
+import { appReducer } from './shared/app-state/reducers';
+import { MyDaySuggestionsComponent } from './my-day/my-day-suggestions/my-day-suggestions.component';
+import { AuthComponent } from './auth/auth/auth.component';
+import {
+  TransitionGroupComponent,
+  TransitionGroupItemDirective,
+} from './shared/animate.directive';
+import { AuthInterceptor } from './auth/auth/auth.interceptor';
+import { FetchLoadingComponent } from './shared/fetch-loading/fetch-loading.component';
+import { ProfileSettingsComponent } from './auth/auth/profile-settings/profile-settings.component';
+import { SharedModule } from './shared/shared-module/shared.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FirstVisitComponent } from './first-visit/first-visit.component';
 
 @NgModule({
   declarations: [
@@ -21,19 +30,24 @@ import { HamburgerMenuComponent } from './main-page/hamburger-menu/hamburger-men
     MyDayComponent,
     MainPageComponent,
     MyDayContentComponent,
-    TaskCardComponent,
-    HamburgerMenuComponent,
+    MyDaySuggestionsComponent,
+    AuthComponent,
+    TransitionGroupComponent,
+    TransitionGroupItemDirective,
+    FetchLoadingComponent,
+    ProfileSettingsComponent,
+    FirstVisitComponent,
   ],
   imports: [
-    BrowserModule,
-    CommonModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    AngularMaterialModule,
+    StoreModule.forRoot(appReducer),
+    SharedModule,
+    BrowserModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

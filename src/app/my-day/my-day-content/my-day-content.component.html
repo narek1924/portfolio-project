@@ -1,44 +1,45 @@
 <div class="my-day-content">
-  <div class="greeting">
-    <div class="title-container">
-      <div class="title">
-        Good {{ greetingTime }}, Username<span class="title-end">&#x2022;</span>
-      </div>
-      <div class="subtitle">What will you accomplish today?</div>
-    </div>
-    <div class="calendar">
-      <div class="calendar-weekday">
-        {{ dayOfWeekString }}
-      </div>
-      <div class="calendar-day">{{ dayOfMonth }}</div>
-      <div class="calendar-month">{{ month }}</div>
-    </div>
-  </div>
   <div class="form-with-tasks">
     <div class="content-wrapper">
-      <div *ngIf="myDayTasks.length">
-        <mat-card
+      <div
+        class="content-box"
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListData]="myDayTasks"
+      >
+        <div
+          [@.disabled]="animationDisabled"
           @item
           class="task-card"
-          *ngFor="let task of myDayTasks; let i = index"
-          (click)="delete(i)"
+          *ngFor="let task of myDayTasks | sort; let i = index"
+          (click)="onEdit(task)"
+          cdkDrag
         >
-          <mat-card-subtitle class="task-card-subtitle">{{
-            task.list
-          }}</mat-card-subtitle>
-          <mat-card-content class="task-card-name">{{
-            task.name
-          }}</mat-card-content>
-        </mat-card>
+          <input
+            (change)="onCheckboxChange(task, $event, i)"
+            (click)="$event.stopPropagation()"
+            [checked]="task.done"
+            class="checkbox"
+            type="checkbox"
+          />
+          <div class="task-card-information">
+            <div class="task-card-subtitle">{{ task.list }}</div>
+            <div class="task-card-name" [class.done]="task.done">
+              {{ task.name }}
+            </div>
+          </div>
+          <span class="x-symbol" (click)="removeFromMyDay(task.creationTime)"
+            >&times;</span
+          >
+        </div>
       </div>
     </div>
-    <form [formGroup]="taskName">
+    <form [formGroup]="taskName" (submit)="createTask()">
       <mat-form-field appearance="fill" class="input">
         <span
-          [@decorationAnimation]="
-            !myDayTasks.length ? 'emptyWrapper' : 'nonEmptyWrapper'
-          "
+          @decorationAnimation
           class="content-decoration"
+          *ngIf="!myDayTasks.length"
         ></span>
         <input
           #taskNameInput
@@ -46,7 +47,6 @@
           class="input"
           placeholder="+ &nbsp; Add task"
           matInput
-          (keypress)="createTask($event)"
           (focus)="taskNameInput.placeholder = 'Enter name here'"
           (blur)="taskNameInput.placeholder = '+ &nbsp; Add task'"
         />
@@ -54,4 +54,3 @@
     </form>
   </div>
 </div>
-placeholder="+ &nbsp; Add task"

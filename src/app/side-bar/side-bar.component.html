@@ -1,9 +1,19 @@
 <div class="sidenav-container">
-  <div class="sidenav">
-    <div class="profile">
-      <img class="settings-icon" src="/assets/svg-icons/settings.svg" />
-      <button type="button" class="profile_button">Username</button>
+  <div class="header">
+    <div
+      class="settings"
+      [class]="imageUrl ? 'avatar-wrapper' : 'icon-wrapper'"
+    >
+      <img
+        [src]="imageUrl ? imageUrl : '/assets/svg-icons/settings.svg'"
+        [class]="imageUrl ? 'avatar' : 'default'"
+        alt="profile-setting-icon"
+        (click)="profileSettings()"
+      />
     </div>
+    <button type="button" class="profile_button" (click)="profileSettings()">
+      {{ name }}
+    </button>
     <button class="keep-open-button" (click)="keepOpentoggle()">
       <img
         src="/assets/svg-icons/keep-open.svg"
@@ -11,59 +21,79 @@
         [style.filter]="
           keepOpen
             ? 'invert(56%) sepia(35%) saturate(6855%) hue-rotate(200deg) brightness(105%) contrast(88%)'
-            : 'invert(0%) sepia(7%) saturate(7473%) hue-rotate(55deg) brightness(91%) contrast(106%)'
+            : 'var(--grey-filter)'
         "
       />
     </button>
-    <div class="list-menu">
-      <ul class="sidebar-items">
-        <li class="sidebar-item">
-          <ul class="sidebar-links">
-            <li>
-              <a class="sidebar-link" routerLink="/my-day">
-                <img
-                  src="/assets/svg-icons/my-day.svg"
-                  alt=""
-                  class="svg-icon"
-                />
-                <p class="link-title">My day</p>
-              </a>
-            </li>
-            <li>
-              <a class="sidebar-link">
-                <img
-                  src="/assets/svg-icons/next-7-days.svg"
-                  alt=""
-                  class="svg-icon"
-                />
-                <p class="link-title">Next 7 days</p>
-              </a>
-            </li>
-            <li>
-              <a class="sidebar-link">
-                <img
-                  src="/assets/svg-icons/all-my-tasks.svg"
-                  alt=""
-                  class="svg-icon"
-                />
-                <p class="link-title">All my tasks</p>
-              </a>
-            </li>
-          </ul>
-          <div style="height: 16px"></div>
-        </li>
-        <li class="sidebar-item">
-          <a class="sidebar-item-heading">
-            <p>My lists</p>
-            <img src="/assets/svg-icons/plus-icon.svg" class="plus-icon" />
-          </a>
-          <ul class="sidebar-links">
-            <li><a class="sidebar-link">Personal</a></li>
-            <li class="sidebar-link">Groccery list</li>
-            <li class="sidebar-link">Work</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+  </div>
+
+  <ul class="sidebar-links">
+    <li>
+      <a
+        class="sidebar-link"
+        routerLink="/my-day"
+        routerLinkActive="sidebar-link-active"
+      >
+        <img src="/assets/svg-icons/my-day.svg" alt="" class="svg-icon" />
+        <p class="link-title">My day</p>
+        <span class="badge" *ngIf="myDayTasksLength() > 0"
+          ><span>{{ myDayTasksLength() }}</span></span
+        >
+      </a>
+    </li>
+    <li>
+      <a
+        class="sidebar-link"
+        routerLink="/tasks/next-7-days"
+        routerLinkActive="sidebar-link-active"
+      >
+        <img src="/assets/svg-icons/next-7-days.svg" alt="" class="svg-icon" />
+        <p class="link-title">Next 7 days</p>
+        <span class="badge" *ngIf="sevenDaysTasksLength() > 0"
+          ><span>{{ sevenDaysTasksLength() }}</span></span
+        >
+      </a>
+    </li>
+    <li>
+      <a
+        class="sidebar-link"
+        routerLink="/tasks/lists/all"
+        routerLinkActive="sidebar-link-active"
+      >
+        <img src="/assets/svg-icons/all-my-tasks.svg" alt="" class="svg-icon" />
+        <p class="link-title">All my tasks</p>
+        <span class="badge" *ngIf="tasks.length > 0"
+          ><span>{{ tasks.length }}</span></span
+        >
+      </a>
+    </li>
+  </ul>
+
+  <div class="sidebar-item-heading" (click)="showLists = !showLists">
+    <div>My lists</div>
+    <span
+      (click)="createList(); $event.stopPropagation()"
+      class="plus-icon"
+      *ngIf="showLists"
+      >&#43;</span
+    >
+    <span class="badge" *ngIf="!showLists"
+      ><span>{{ tasksLists.length }}</span></span
+    >
+  </div>
+  <div class="list-links" *ngIf="showLists" @wrapper>
+    <ul class="sidebar-links">
+      <li
+        class="sidebar-link"
+        *ngFor="let list of tasksLists"
+        routerLink="/tasks/lists/{{ list }}"
+        routerLinkActive="sidebar-link-active"
+      >
+        <a class="list-title">{{ list }}</a>
+        <span class="badge" *ngIf="listTasksLength(list) > 0"
+          ><span>{{ listTasksLength(list) }}</span></span
+        >
+      </li>
+    </ul>
   </div>
 </div>

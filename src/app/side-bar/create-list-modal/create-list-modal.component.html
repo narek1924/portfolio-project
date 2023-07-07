@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="modal-content">
+    <div class="label-text">
+      {{ info ? "Edit Username" : " Create a list" }}
+    </div>
+    <textarea
+      #textArea="ngModel"
+      [(ngModel)]="input"
+      rows="1"
+      autofocus
+      appTextareaExpand
+      (keyup.enter)="submit()"
+    ></textarea>
+  </div>
+  <div class="buttons">
+    <button class="button cancel" (click)="close()">Cancel</button>
+    <div class="separator"></div>
+    <button class="button create" (click)="submit()">
+      {{ info ? "Save" : "Create" }}
+    </button>
+  </div>
+</div>

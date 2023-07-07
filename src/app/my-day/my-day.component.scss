@@ -1,18 +1,130 @@
 .container {
   max-width: 100%;
+  width: 100%;
   height: 100%;
   padding: 24px 0 6px 0;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 
   background-color: white;
 
   position: relative;
 }
-app-my-day-content {
+.my-day-container {
+  width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
   position: absolute;
-  left: 10%;
+  margin: auto;
 }
-.suggestions {
+.greeting {
+  height: 152px;
+}
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 36px;
+}
+.title-end {
+  font-size: 30px;
+  color: var(--brand-color);
+  position: absolute;
+  top: 0.2em;
+}
+.subtitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #d8d8d8;
+  margin-bottom: 10px;
+}
+.calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: fit-content;
+  margin-bottom: 30px;
+}
+.calendar-weekday {
+  font-weight: 600;
+  font-size: 15px;
+  color: #9b9b9b;
+  text-transform: uppercase;
+  margin-bottom: -3px;
+}
+.calendar-day {
+  font-weight: 700;
+  font-size: 41.31px;
+  line-height: 44.26px;
+  margin-bottom: -3px;
+}
+.calendar-month {
+  font-size: 15px;
+  line-height: 1.2;
+  color: #d8d8d8;
+  margin-bottom: 10px;
+}
+@media only screen and (max-width: 1000px) {
+  .my-day-container {
+    width: 550px;
+  }
+}
+@media only screen and (max-width: 870px) {
+  .my-day-container {
+    width: 500px;
+  }
+}
+@media only screen and (max-width: 726px) {
+  .my-day-container {
+    width: 450px;
+  }
+}
+@media only screen and (max-width: 620px) {
+  .my-day-container {
+    width: 400px;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .title-end {
+    font-size: 28px;
+  }
+  .subtitle {
+    font-size: 24px;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .my-day-container {
+    width: 360px;
+  }
+  .title {
+    font-size: 22px;
+  }
+  .title-end {
+    font-size: 26px;
+  }
+  .subtitle {
+    font-size: 22px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .my-day-container {
+    width: 320px;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .my-day-container {
+    width: 280px;
+  }
+  .title {
+    font-size: 18px;
+  }
+  .title-end {
+    font-size: 24px;
+  }
+  .subtitle {
+    font-size: 18px;
+  }
 }

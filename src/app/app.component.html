@@ -1,10 +1,43 @@
 <div class="container">
-  <!-- <app-hamburger-menu></app-hamburger-menu> -->
-  <img
-    @settings
-    *ngIf="!isOpened"
-    class="settings-icon"
-    src="/assets/svg-icons/settings.svg"
-  />
-  <app-main-page></app-main-page>
+  <app-first-visit *ngIf="firstVisit"></app-first-visit>
+  <div class="loading" *ngIf="loading">
+    <app-fetch-loading></app-fetch-loading>
+  </div>
+  <div class="show-container" *ngIf="!loading && !firstVisit">
+    <div
+      class="sidebar-card"
+      (click)="suggestionsToggle()"
+      [ngSwitch]="suggestionsOpened"
+      *ngIf="isMyDay"
+    >
+      <img
+        *ngSwitchCase="false"
+        class="svg-icon"
+        src="/assets/svg-icons/suggestions.svg"
+        alt="bulb-icon"
+      />
+      <img
+        *ngSwitchCase="true"
+        class="svg-icon"
+        src="/assets/svg-icons/close-suggestions.svg"
+        alt="arrow-icon"
+      />
+    </div>
+    <!-- <app-hamburger-menu></app-hamburger-menu> -->
+    <div
+      class="settings-wrapper"
+      [class.icon-wrapper]="!imageUrl"
+      *ngIf="!isOpened && isLogedIn"
+      @settings
+    >
+      <img
+        (click)="toggle()"
+        [class.toggle]="isSmallScreen$ | async"
+        [class]="imageUrl ? 'avatar' : 'default'"
+        [src]="imageUrl ? imageUrl : '/assets/svg-icons/settings.svg'"
+        [lowsrc]="imageUrl ? imageUrl : ''"
+      />
+    </div>
+    <app-main-page></app-main-page>
+  </div>
 </div>

@@ -1,0 +1,146 @@
+<div class="container">
+  <div class="wrapper-for-scroll">
+    <div class="tasks-list" @first-one>
+      <app-tasks-wrapper></app-tasks-wrapper>
+      <div class="quick-add">
+        <div class="quick-add-buttons" *ngIf="isFocused" @buttonsAnimation>
+          <mat-form-field style="width: 1px; visibility: hidden">
+            <input
+              matInput
+              [matDatepicker]="picker"
+              (dateChange)="dateHandler($event, taskTitleInput)"
+              [min]="minDate"
+            />
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <button
+            (click)="datePickerButton(picker, taskTitleInput)"
+            class="quick-add-button"
+          >
+            <img
+              *ngIf="!taskPropertyButtons.datePicker.title"
+              class="quick-add-button-icon"
+              src="/assets/svg-icons/calendar.svg"
+            />
+            <div
+              *ngIf="taskPropertyButtons.datePicker.title"
+              class="button-value"
+            >
+              {{ taskPropertyButtons.datePicker.title }}
+            </div>
+          </button>
+          <button
+            class="quick-add-button"
+            (click)="
+              selectTaskProperties(
+                0,
+                taskPropertyButtons.buttons[0].value,
+                taskTitleInput
+              )
+            "
+          >
+            <img
+              *ngIf="!taskPropertyButtons.buttons[0].value"
+              class="quick-add-button-icon"
+              [src]="taskPropertyButtons.buttons[0].iconSrc"
+              [class.button-open]="taskPropertyButtons.menuOpen === 0"
+            />
+            <div
+              *ngIf="taskPropertyButtons.buttons[0].value"
+              class="button-value"
+            >
+              {{ taskPropertyButtons.buttons[0].value }}
+            </div>
+          </button>
+          <button
+            class="quick-add-button"
+            (click)="
+              selectTaskProperties(
+                1,
+                taskPropertyButtons.buttons[1].value,
+                taskTitleInput
+              )
+            "
+          >
+            <img
+              *ngIf="!taskPropertyButtons.buttons[1].value"
+              class="quick-add-button-icon"
+              [src]="taskPropertyButtons.buttons[1].iconSrc"
+              [class.button-open]="taskPropertyButtons.menuOpen === 1"
+            />
+            <div
+              *ngIf="taskPropertyButtons.buttons[1].value"
+              class="button-value"
+              [style.color]="taskPropertyButtons.buttons[1].value.color"
+            >
+              {{ taskPropertyButtons.buttons[1].value.status }}
+            </div>
+          </button>
+          <div
+            class="pickValue"
+            *ngIf="taskPropertyButtons.menuOpen === 0"
+            @opacity
+          >
+            <div
+              (click)="changeButtonValue(value, taskTitleInput)"
+              class="valueCard"
+              *ngFor="let value of taskPropertyButtons.buttons[0].pickValue"
+            >
+              {{ value }}
+            </div>
+          </div>
+          <div
+            class="pickValue"
+            *ngIf="taskPropertyButtons.menuOpen === 1"
+            @opacity
+          >
+            <div
+              (click)="changeButtonValue(value, taskTitleInput)"
+              class="valueCard"
+              *ngFor="
+                let value of taskPropertyButtons.buttons[1].pickValue;
+                let first = first
+              "
+              [style.color]="value.color"
+            >
+              {{ value.status }}
+            </div>
+          </div>
+        </div>
+        <div class="quick-add-input">
+          <div class="quick-add-input-wrapper">
+            <input
+              class="input"
+              type="text"
+              #taskTitleInput
+              #input="ngModel"
+              [(ngModel)]="taskTitle"
+              placeholder="Click to quickly add a task"
+              (focus)="focus($event)"
+              (blur)="focus($event)"
+              (keyup.enter)="createTask(taskTitleInput)"
+            />
+          </div>
+          <button
+            class="quick-add-add-button"
+            (click)="createTask(taskTitleInput)"
+            [class.button-focused]="isFocused"
+          >
+            <img
+              *ngIf="!animation"
+              @arrowAnimation
+              class="quick-add-add-button-icon"
+              src="/assets/svg-icons/arrow-icon.svg"
+              [class.icon-focused]="isFocused"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="information" class="wrapper-for-scroll" @second-one>
+    <div class="task-information">
+      <app-task-edit></app-task-edit>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="search-field" #inputDiv>
+    <input
+      #filterInput="ngModel"
+      [(ngModel)]="filterParam"
+      class="input"
+      placeholder="Filter"
+      type="text"
+    />
+    <img
+      class="svg-icon"
+      src="/assets/svg-icons/filter.svg"
+      alt="filter-icon"
+    />
+  </div>
+  <div class="cards-wrapper" *ngIf="$myDayTasks | async as tasks">
+    <div
+      class="filter-no-result"
+      *ngIf="filterParam && !(tasks | filter : filterParam).length"
+    >
+      No matching suggestions found
+    </div>
+    <div
+      class="cards-box"
+      cdkDropList
+      [cdkDropListData]="tasks"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div
+        @item
+        class="task-card"
+        *ngFor="let task of tasks | dateSort | filter : filterParam"
+        cdkDrag
+      >
+        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+        <span class="plus-icon">&#43;</span>
+        <div class="task-information">
+          <div class="task-card-subtitle">{{ task.list }}</div>
+          <div class="task-card-name">{{ task.name }}</div>
+          <div class="task-card-date">{{ task.dayInfo }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

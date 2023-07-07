@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="onBoarding">
+    <div class="onBoarding-content">
+      <div class="add-tasks">
+        <div class="heading">Add your first tasks</div>
+        <div class="input-wrapper">
+          <input
+            #firstInput="ngModel"
+            [(ngModel)]="taskTitles[0]"
+            placeholder="Do laundry"
+            type="text"
+            name=""
+            id=""
+          />
+        </div>
+        <div class="input-wrapper">
+          <input
+            #SecondInput="ngModel"
+            [(ngModel)]="taskTitles[1]"
+            placeholder="Plan a trip to"
+            type="text"
+            name=""
+            id=""
+          />
+        </div>
+        <div class="input-wrapper">
+          <input
+            #thirdInput="ngModel"
+            [(ngModel)]="taskTitles[2]"
+            placeholder="Call back"
+            type="text"
+            name=""
+            id=""
+          />
+        </div>
+        <div
+          class="task-samples"
+          *ngIf="checkInputs('some')"
+          [@.disabled]="animationDisabled"
+          @firstStepAnimation
+        >
+          <div class="row">
+            <button
+              (click)="fillInput(0)"
+              type="button"
+              class="add-task-button"
+            >
+              <span class="plus-icon">+</span>
+              Do laundry
+            </button>
+            <button
+              (click)="fillInput(1)"
+              type="button"
+              class="add-task-button"
+            >
+              <span class="plus-icon">+</span>Call back...
+            </button>
+          </div>
+          <div class="row">
+            <button
+              (click)="fillInput(2)"
+              type="button"
+              class="add-task-button"
+            >
+              <span class="plus-icon">+</span>
+              Plan a trip to...
+            </button>
+            <button
+              (click)="fillInput(3)"
+              type="button"
+              class="add-task-button"
+            >
+              <span class="plus-icon">+</span>
+              But birthday gift for...
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="tasks-wrapper">
+        <div class="header">
+          <div class="title">Good {{ greetingTime }},{{ username }}</div>
+          <div class="subtitle">Time to add your first task</div>
+        </div>
+        <div class="tasks">
+          <div class="task" *ngFor="let task of taskTitles; let i = index">
+            <span class="round" *ngIf="task"></span>
+            {{ task }}
+          </div>
+        </div>
+        <div class="decoration-wrapper">
+          <span
+            @decorationAnimation
+            class="decoration"
+            *ngIf="checkInputs('every')"
+          ></span>
+        </div>
+      </div>
+    </div>
+    <div class="onBoarding-footer">
+      <button class="skip" type="button" (click)="skip()">Skip</button>
+      <button
+        class="continue"
+        type="button"
+        [disabled]="checkInputs('every')"
+        (click)="continue()"
+      >
+        Continue
+      </button>
+    </div>
+  </div>
+</div>

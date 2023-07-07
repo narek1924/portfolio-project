@@ -1,0 +1,96 @@
+<div
+  class="container"
+  [style.height]="deletePage || changePassword ? '205px' : '275px'"
+>
+  <div
+    class="content"
+    *ngIf="!deletePage && !changePassword"
+    [@.disabled]="animationDisabled"
+    @firstStepAnimation
+  >
+    <div
+      class="settings"
+      [class]="imageUrl ? 'avatar-wrapper' : 'icon-wrapper'"
+      (click)="fileInput.click()"
+    >
+      <img
+        [src]="imageUrl ? imageUrl : '/assets/svg-icons/camera-icon.svg'"
+        [class]="imageUrl ? 'avatar' : 'default'"
+        alt="profile-setting-icon"
+        [lowsrc]="'/assets/svg-icons/settings.svg'"
+      />
+      <input
+        #fileInput
+        (change)="imageSelect($event)"
+        hidden
+        type="file"
+        accept="image/png, image/gif, image/jpeg"
+      />
+      <div class="image-cover" *ngIf="imageUrl">
+        <span class="plus-icon">+</span>
+      </div>
+      <div class="image-cover loading" *ngIf="imageLoading">
+        <app-loading-spinner-small></app-loading-spinner-small>
+      </div>
+    </div>
+
+    <div class="header"><h3>My profile</h3></div>
+    <div class="username" (click)="editUsername()">{{ username }}</div>
+    <div class="email">{{ "(" + userEmail + ")" }}</div>
+    <div class="buttons">
+      <hr class="separator" />
+      <button class="options" (click)="onPasswordChange()">
+        Reset Password
+      </button>
+      <hr class="separator" />
+      <button class="options" (click)="onDelete()">Delete Account</button>
+      <hr class="separator" />
+      <button class="options" (click)="logout()">Sign Out</button>
+    </div>
+  </div>
+  <div class="content" *ngIf="deletePage" @nextStepAnimation>
+    <div class="header">
+      <img
+        src="/assets/svg-icons/arrow-icon.svg"
+        alt="back to first step button"
+        class="back-icon"
+        (click)="backToSettings('delete')"
+      />
+      <h3>Delete Account</h3>
+    </div>
+    <div class="info">
+      <p class="delete-alert">
+        This will permanently delete all of your tasks & history. You can’t Undo
+        this
+      </p>
+      <button class="button delete" (click)="deleteAccount()">
+        Delete Account
+      </button>
+    </div>
+  </div>
+  <div class="content" *ngIf="changePassword" @nextStepAnimation>
+    <div class="header">
+      <img
+        src="/assets/svg-icons/arrow-icon.svg"
+        alt="back to first step button"
+        class="back-icon"
+        (click)="backToSettings('reset')"
+      />
+      <h3>Reset password</h3>
+    </div>
+    <div class="info">
+      <p>We will send instructions to this email address:</p>
+      <p style="font-weight: 600">{{ userEmail }}</p>
+      <button *ngIf="!emailSent" class="button reset" (click)="resetPassword()">
+        <p *ngIf="!sendingEmail">Reset Password</p>
+        <app-loading-spinner-small
+          *ngIf="sendingEmail"
+        ></app-loading-spinner-small>
+      </button>
+      <p class="email-sent" *ngIf="emailSent">
+        Email sent, <br />
+        Please check your inbox.
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+.container {
+  width: 100%;
+  height: fit-content;
+}
+.modal-content {
+  padding: 12px 16px;
+}
+.label-text {
+  font-size: 20px;
+  text-align: left;
+}
+textarea {
+  position: relative;
+  margin: 10px 0;
+  padding-left: 5px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  font-size: 30px;
+  font-family: inherit;
+  outline: none;
+  resize: none;
+  &:hover,
+  &:focus {
+    background-color: #f8f7f7;
+  }
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  box-shadow: 0px -1px 10px 0px rgba(216, 209, 209, 1);
+  -webkit-box-shadow: 0px -1px 10px 0px rgba(216, 209, 209, 1);
+  -moz-box-shadow: 0px -1px 10px 0px rgba(216, 209, 209, 1);
+}
+.button {
+  flex: 1;
+  height: 60px;
+  background-color: inherit;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  cursor: pointer;
+  &:hover {
+    background-color: #eeeeee;
+  }
+}
+.create {
+  color: var(--brand-color);
+}
+.separator {
+  width: 1px;
+  height: 30px;
+  background-color: #9b9b9b;
+}

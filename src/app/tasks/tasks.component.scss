@@ -1,0 +1,121 @@
+.container {
+  width: 100%;
+  height: 100%;
+  overflow-y: overlay;
+  position: relative;
+  &::-webkit-scrollbar {
+    border-radius: 10px;
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+}
+.list-information {
+  width: fit-content;
+  height: 40px;
+  padding: 0 20px;
+  margin-top: 25px;
+  margin-left: 10px;
+  position: fixed;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  z-index: 15;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  cursor: default;
+}
+.separator {
+  width: 1px;
+  height: 24px;
+  background-color: #d8d8d8;
+}
+.options {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.svg-icon {
+  padding-left: 12px;
+  &:hover {
+    filter: var(--brand-color-filter);
+  }
+}
+.disabled-button {
+  padding-left: 12px;
+  cursor: default;
+}
+.multi-select-container {
+  position: fixed;
+  bottom: 50px;
+  left: calc(50% - 200px);
+  width: 400px;
+  height: 50px;
+  padding: 0 16px;
+
+  background-color: #fff;
+  border-radius: 25px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  // margin-bottom: 500px;
+  z-index: 15;
+}
+.multi-select-content {
+  height: 100%;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.badge {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04), 0 2px 18px rgba(0, 0, 0, 0.08);
+  background-color: var(--brand-color);
+  border-radius: 50%;
+}
+.text {
+  width: 150px;
+}
+.modify-svg-icon {
+  cursor: pointer;
+  &:hover {
+    filter: var(--brand-color-filter);
+  }
+}
+.modify-svg-icon-disabled {
+  filter: var(--grey-filter);
+}
+.close-symbol {
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover {
+    color: var(--brand-color);
+  }
+}
+.tasks-container {
+  margin: 90px 0 30px 10px;
+  height: calc(100% - 120px);
+}

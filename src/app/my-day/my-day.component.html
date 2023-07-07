@@ -1,6 +1,21 @@
 <div class="container">
   <div class="my-day-container">
+    <div class="greeting">
+      <div class="title-container">
+        <div class="title">
+          Good {{ greetingTime }}, {{ userName.split(" ")[0]
+          }}<span class="title-end">&#x2022;</span>
+        </div>
+        <div class="subtitle">{{ randomQuote }}</div>
+      </div>
+      <div class="calendar">
+        <div class="calendar-weekday">
+          {{ dayOfWeekString }}
+        </div>
+        <div class="calendar-day">{{ dayOfMonth }}</div>
+        <div class="calendar-month">{{ month }}</div>
+      </div>
+    </div>
     <app-my-day-content></app-my-day-content>
   </div>
-  <div class="suggestions">Something</div>
 </div>

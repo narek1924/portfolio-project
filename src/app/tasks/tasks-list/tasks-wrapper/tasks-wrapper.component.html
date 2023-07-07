@@ -1,0 +1,68 @@
+<div class="tasks-list-wrapper">
+  <div *ngFor="let wrapper of tasksWithDate; let i = index">
+    <div class="tasks-title" (click)="wrapper.show = !wrapper.show">
+      <h2 class="tasks-date">
+        {{ wrapper.day }}
+      </h2>
+      <span *ngIf="!wrapper.show" class="badge">{{
+        (tasks | filterByList : filterParam | taskListSort : wrapper.day).length
+      }}</span>
+    </div>
+    <div
+      class="tasks-wrapper"
+      *ngIf="wrapper.show"
+      [@.disabled]="animationDisabled"
+      @wrapper
+    >
+      <div
+        class="task-card"
+        (click)="onEdit(task)"
+        *ngFor="
+          let task of tasks
+            | filterByList : filterParam
+            | taskListSort : wrapper.day;
+          let j = index
+        "
+      >
+        <div
+          class="task-card-content"
+          [class.task-selected]="selectedTasks.includes(task.creationTime)"
+          [class.task-editing]="selectedTaskDate === task.creationTime"
+        >
+          <input
+            (change)="onCheckboxChange(task, $event)"
+            (click)="$event.stopPropagation()"
+            [checked]="task.done"
+            [disabled]="multiSelect"
+            class="checkbox"
+            type="checkbox"
+          />
+          <div class="main-information">
+            <div class="task-card-name" [class.task-card-name-done]="task.done">
+              {{ task.name }}
+            </div>
+            <div class="task-card-list" *ngIf="!task.done">
+              <span
+                [style.background-color]="task.priority.color"
+                class="priority-indicator"
+                *ngIf="task.priority"
+              ></span>
+              <span *ngIf="task.priority" class="separator"></span>
+              {{ task.list }}
+            </div>
+          </div>
+          <button
+            class="delete-task"
+            (click)="multiSelect ? $event.stopPropagation() : deleteTask(task)"
+            *ngIf="task.done"
+          >
+            <img
+              src="/assets/svg-icons/close-icon.svg"
+              alt="delete-task-icon"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

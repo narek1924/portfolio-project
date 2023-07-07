@@ -1,73 +1,105 @@
 .sidenav-container {
+  position: relative;
   width: 240px;
   height: 100%;
   min-height: 100%;
-  overflow: hidden;
-  position: relative;
-}
-.sidenav {
-  height: 100%;
-  width: 240px;
-  box-sizing: border-box;
   padding-top: 24px;
 
-  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
   z-index: 15;
-
-  line-height: 1.4;
-  font-size: 15px;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.profile {
-  padding: 0 40px 0 20px;
-  margin-bottom: 16px;
+.header {
+  display: flex;
+  align-items: center;
+  height: 45px;
+  padding: 0 20px;
 }
-.settings-icon {
+.settings {
   position: absolute;
-  top: 10px;
+  top: 24px;
   left: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  z-index: 1000;
+  cursor: pointer;
+}
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  &:hover {
+    border: 2px solid var(--brand-color);
+    .default {
+      filter: var(--brand-color-filter);
+    }
+  }
+}
+.avatar-wrapper {
+  &:hover {
+    outline: 2px solid var(--brand-color);
+  }
+}
+.default {
+  width: 30px;
+  height: 30px;
+}
+.avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
 }
 .profile_button {
+  flex: 1;
+  margin-left: 45px;
   border: none;
+  outline: none;
   background-color: inherit;
-
-  padding: 0 40px 0 50px;
+  text-align: left;
   font-weight: 600;
-  font-size: inherit;
+  font-size: 17px;
   font-family: inherit;
-
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   cursor: pointer;
+  &:active {
+    transform: scale(0.98);
+  }
 }
 .keep-open-button {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
 
-  position: absolute;
-  top: 24px;
-  right: 24px;
   border: none;
   border-radius: 50%;
-  background-color: inherit;
+  background-color: transparent;
 
   cursor: pointer;
   &:hover {
     background-color: var(--hover-color);
   }
 }
-.sidebar-items {
-  padding: 0;
-
-  list-style-type: none;
-}
 .sidebar-links {
   padding: 0;
+  margin: 0;
 
   list-style-type: none;
 }
 .sidebar-link {
   display: flex;
   align-items: center;
+  gap: 7px;
 
   padding: 0 24px 0 20px;
   height: 40px;
@@ -75,41 +107,81 @@
   cursor: pointer;
   text-decoration: none;
   color: inherit;
+  outline: none;
+
   &:hover {
+    .badge {
+      background-color: white;
+    }
     background-color: var(--hover-color);
   }
 }
-.svg-icon {
-  padding-right: 7px;
+.list-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.badge {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  color: #9b9b9b;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04), 0 2px 18px rgba(0, 0, 0, 0.08);
+  background-color: #e6e4e4;
+  border-radius: 50%;
+}
+.sidebar-link-active {
+  color: var(--brand-color);
+  .svg-icon {
+    filter: var(--brand-color-filter);
+  }
+  > span {
+    background-color: var(--brand-color) !important;
+    color: white;
+  }
 }
 .link-title {
   font-size: 15px;
+  font-weight: 500;
+  margin: 0;
 }
 .sidebar-item-heading {
-  &:hover {
-    background-color: var(--hover-color);
-  }
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  height: 40px;
-  padding: 0 12px 0 20px;
+  height: 30px;
+  padding: 0 20px;
   margin: 0;
-  border: none;
-  background-color: inherit;
+  margin-bottom: -10px;
 
-  cursor: pointer;
-}
-.sidebar-item-heading > p {
   font-size: 17px;
   font-weight: 600;
+  cursor: pointer;
+  &:hover {
+    .badge {
+      background-color: white;
+    }
+    background-color: var(--hover-color);
+  }
 }
 .plus-icon {
-  filter: invert(69%) sepia(10%) saturate(14%) hue-rotate(345deg)
-    brightness(90%) contrast(83%);
+  display: inline-block;
+  font-size: 26px;
+  color: #b8b8b8;
   &:hover {
-    filter: invert(56%) sepia(35%) saturate(6855%) hue-rotate(200deg)
-      brightness(105%) contrast(88%);
+    color: var(--brand-color);
   }
+}
+.list-links {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  overflow: auto;
 }

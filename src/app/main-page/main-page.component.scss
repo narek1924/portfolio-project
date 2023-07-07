@@ -4,12 +4,12 @@ mat-sidenav-container {
 mat-sidenav {
   width: 240px;
   position: fixed;
+  overflow: hidden;
 }
-.sidenav-closed {
-  height: 100vh;
-  width: 80px;
-  background-color: white;
+.suggestions {
+  border: none !important;
 }
+
 .sidenav-content {
   width: 100%;
   height: 100%;
@@ -17,6 +17,14 @@ mat-sidenav {
   overflow: hidden;
   position: relative;
 }
+.sidenav-closed {
+  height: 100vh;
+  width: 80px;
+  opacity: 0;
+  position: fixed;
+  z-index: 100;
+}
 .routing-content {
-  width: 100%;
+  flex: 1;
+  min-width: 0;
 }

@@ -1,0 +1,97 @@
+<div class="container" [@listAnimation]="wrapperArray.length" cdkDropListGroup>
+  <div class="content-wrapper" *ngFor="let card of wrapperArray; let i = index">
+    <div class="day-information">
+      <div class="day">
+        {{ card.day[0] }}
+        <div class="weekday-opt" *ngIf="card.day[1]">
+          {{ card.day[1] }}
+        </div>
+      </div>
+    </div>
+    <div class="cards-wrapper">
+      <div
+        class="content-box"
+        #tasksWrapper
+        cdkDropList="i"
+        (cdkDropListDropped)="drop($event, i)"
+        [cdkDropListData]="card.tasks"
+      >
+        <div
+          *ngFor="let task of card.tasks | sort; let j = index"
+          class="task-card"
+          [class.task-selected]="selectedTasks.includes(task.creationTime)"
+          cdkDrag
+          (cdkDragStarted)="onDragStarted($event)"
+          (click)="onEdit(task)"
+          [@.disabled]="animationDisabled"
+        >
+          <input
+            (change)="onCheckboxChange(card, task, $event)"
+            [disabled]="multiSelect"
+            (click)="$event.stopPropagation()"
+            [checked]="task.done"
+            class="checkbox"
+            type="checkbox"
+          />
+          <div class="task-card-content">
+            <div class="task-card-subtitle">{{ task.list }}</div>
+            <div
+              class="task-card-name"
+              [style.width]="task.done ? '165px' : '194px'"
+              [class.task-card-name-done]="task.done"
+            >
+              {{ task.name }}
+            </div>
+            <span
+              *ngIf="task.priority && !task.done"
+              class="priority-indicator"
+              [style.background-color]="task.priority.color"
+            ></span>
+          </div>
+          <button
+            class="delete-task"
+            (click)="
+              multiSelect
+                ? $event.stopPropagation()
+                : deleteTask(task.creationTime)
+            "
+            *ngIf="task.done"
+          >
+            <img
+              src="/assets/svg-icons/close-icon.svg"
+              alt="delete-task-icon"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="input-wrapper">
+      <form (keyup.enter)="onAddTask(i, text)">
+        <textarea
+          #text
+          #taskInput="ngModel"
+          [(ngModel)]="inputArray[i]"
+          name="xyz"
+          class="input"
+          rows="1"
+          placeholder="+ &nbsp;Add task"
+          (focus)="
+            text.placeholder = 'Enter task title'; focusedInputIndexes.push(i)
+          "
+          (blur)="onBlur(i); text.placeholder = '+ &nbsp;Add task'"
+          [class.focused-input]="focusedInputIndexes.includes(i)"
+        ></textarea>
+      </form>
+      <div class="task-card-buttons" *ngIf="focusedInputIndexes.includes(i)">
+        <button class="button cancel">Cancel</button>
+        <button
+          class="button add"
+          (click)="onAddTask(i, text)"
+          [disabled]="!inputArray[i]"
+        >
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

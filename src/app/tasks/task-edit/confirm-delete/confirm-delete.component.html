@@ -1,0 +1,31 @@
+<div class="container">
+  <h3
+    class="header"
+    *ngIf="!info || (info.data !== 'auth' && info.data !== 'list')"
+  >
+    {{ !info ? "Delete this task?" : "Delete tasks?" }}
+  </h3>
+  <h3 class="header" *ngIf="info && info.data === 'auth'">
+    Are you sure you want to leave this section?
+  </h3>
+  <h3 class="header" *ngIf="info && info.data === 'list'">Delete this list?</h3>
+  <p *ngIf="!info || (info.data !== 'auth' && info.data !== 'list')">
+    {{
+      !info
+        ? "Are you sure you want to delete this task?"
+        : "Are you sure you want to delete the " +
+          info.data +
+          " selected tasks?"
+    }}
+  </p>
+  <p *ngIf="info && info.data === 'auth'">
+    You have unsaved information, and it will be lost.
+  </p>
+  <p *ngIf="info && info.data === 'list'">
+    This action is irreversible, are you sure you want to delete this list?
+  </p>
+  <div class="buttons">
+    <button class="button cancel" (click)="return(false)">Cancel</button>
+    <button class="button confirm" (click)="return(true)">Yes</button>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="container" @fadeIn>
+  <div class="list-information" [@openClose]="sideBarOpen ? 'open' : 'close'">
+    <div class="page-title">
+      {{ pageTitle }}
+    </div>
+    <div class="separator"></div>
+    <div class="options">
+      <img
+        src="/assets/svg-icons/clear-completed.svg"
+        [matTooltip]="clearCompletedButton ? 'Clear completed' : ''"
+        alt="Clear completed icon"
+        [className]="clearCompletedButton ? 'svg-icon' : 'disabled-button'"
+        (click)="clearDoneTasks()"
+      />
+      <img
+        class="svg-icon"
+        src="/assets/svg-icons/multi-select.svg"
+        matTooltip="Multi-select"
+        alt="Multi select icon"
+        (click)="multiSelectToggle()"
+      />
+      <img
+        *ngIf="listMenu"
+        class="svg-icon"
+        [className]="lists.length > 1 ? 'svg-icon' : 'disabled-button'"
+        src="/assets/svg-icons/delete-list.svg"
+        [matTooltip]="lists.length > 1 ? 'Delete list' : ''"
+        alt=""
+        (click)="deleteList()"
+      />
+    </div>
+  </div>
+  <div class="tasks-container" [@openClose]="sideBarOpen ? 'open' : 'close'">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="multi-select-container" *ngIf="multiSelect">
+    <div class="multi-select-content">
+      <span class="badge">{{ selectedItemsCount }}</span>
+      <div class="text">
+        {{ selectedItemsCount === 1 ? "Task selected" : "Tasks selected" }}
+      </div>
+      <img
+        [className]="
+          selectedItemsCount ? 'modify-svg-icon' : 'modify-svg-icon-disabled'
+        "
+        src="/assets/svg-icons/list-icon.svg"
+        matTooltip="Change list"
+        alt="list-icon"
+        (click)="selectedTasksLists()"
+      />
+      <img
+        [className]="
+          selectedItemsCount ? 'modify-svg-icon' : 'modify-svg-icon-disabled'
+        "
+        matTooltip="Apply priority"
+        src="/assets/svg-icons/hashtag-icon.svg"
+        alt="priority-icon"
+        (click)="selectedTasksPriority()"
+      />
+      <img
+        [className]="
+          selectedItemsCount ? 'modify-svg-icon' : 'modify-svg-icon-disabled'
+        "
+        matTooltip="Mark as done"
+        src="/assets/svg-icons/done-icon.svg"
+        alt="done-icon"
+        (click)="markAsDone()"
+      />
+      <img
+        [className]="
+          selectedItemsCount ? 'modify-svg-icon' : 'modify-svg-icon-disabled'
+        "
+        [matTooltip]="selectedItemsCount === 1 ? 'Delete task' : 'Delete tasks'"
+        src="/assets/svg-icons/delete-icon.svg"
+        alt="delete-icon"
+        (click)="deleteSelectedTasks()"
+      />
+      <span class="close-symbol" (click)="multiSelectToggle()">&#10005;</span>
+    </div>
+  </div>
+</div>

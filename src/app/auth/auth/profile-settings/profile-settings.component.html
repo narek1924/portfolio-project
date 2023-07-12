@@ -14,10 +14,16 @@
       (click)="fileInput.click()"
     >
       <img
-        [src]="imageUrl ? imageUrl : '/assets/svg-icons/camera-icon.svg'"
-        [class]="imageUrl ? 'avatar' : 'default'"
+        *ngIf="!imageUrl"
+        src="/assets/svg-icons/camera-icon.svg"
+        class="default"
         alt="profile-setting-icon"
-        [lowsrc]="'/assets/svg-icons/settings.svg'"
+      />
+      <img
+        *ngIf="imageUrl"
+        class="avatar"
+        [src]="imageUrl"
+        alt="Profile avatar"
       />
       <input
         #fileInput

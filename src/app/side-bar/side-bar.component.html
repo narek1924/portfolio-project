@@ -1,13 +1,22 @@
 <div class="sidenav-container">
+  <img src="/assets/svg-icons/Info-icon.svg" alt="" class="info-icon" />
   <div class="header">
     <div
       class="settings"
       [class]="imageUrl ? 'avatar-wrapper' : 'icon-wrapper'"
     >
       <img
-        [src]="imageUrl ? imageUrl : '/assets/svg-icons/settings.svg'"
-        [class]="imageUrl ? 'avatar' : 'default'"
+        *ngIf="!imageUrl"
+        src="/assets/svg-icons/settings.svg"
+        class="default"
         alt="profile-setting-icon"
+        (click)="profileSettings()"
+      />
+      <img
+        *ngIf="imageUrl"
+        class="avatar"
+        [src]="imageUrl"
+        alt="Profile avatar"
         (click)="profileSettings()"
       />
     </div>

@@ -80,13 +80,15 @@ export class TasksListComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.taskEditService.taskToEdit.subscribe((condition) => {
         this.information = condition;
-        this.cdRef.detectChanges();
+        setTimeout(() => {
+          this.cdRef.detectChanges();
+        }, 0);
       })
     );
     this.subscription.add(
-      this.taskEditService.filterParam.subscribe(
-        (param) => (this.filterParam = param)
-      )
+      this.taskEditService.filterParam.subscribe((param) => {
+        this.filterParam = param;
+      })
     );
   }
   createTask(input: HTMLInputElement) {

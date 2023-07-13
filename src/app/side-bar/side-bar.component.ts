@@ -52,7 +52,9 @@ export class SideBarComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.dataStorageService.profileImage.subscribe((imageUrl) => {
         this.imageUrl = imageUrl;
-        this.cdRef.detectChanges();
+        setTimeout(() => {
+          this.cdRef.detectChanges();
+        }, 0);
       })
     );
     this.subscription.add(

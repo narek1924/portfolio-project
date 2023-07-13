@@ -6,17 +6,17 @@
       [class]="imageUrl ? 'avatar-wrapper' : 'icon-wrapper'"
     >
       <img
-        *ngIf="!imageUrl"
-        src="/assets/svg-icons/settings.svg"
-        class="default"
-        alt="profile-setting-icon"
-        (click)="profileSettings()"
-      />
-      <img
         *ngIf="imageUrl"
         class="avatar"
         [src]="imageUrl"
         alt="Profile avatar"
+        (click)="profileSettings()"
+      />
+      <img
+        *ngIf="!imageUrl"
+        src="/assets/svg-icons/settings.svg"
+        class="default"
+        alt="profile-setting-icon"
         (click)="profileSettings()"
       />
     </div>

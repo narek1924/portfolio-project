@@ -1,12 +1,7 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Subscription, map } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { TaskEditService } from './task-edit/task-list.service';
 
@@ -17,6 +12,7 @@ import { priorityStatus } from '../shared/interfaces/task.interface';
 import { TasksStateService } from '../shared/app-state/tasks-state.service';
 import { fadeInAnimation, openCloseAnimation } from '../shared/animations';
 import { SideBarService } from '../side-bar/side-bar.service';
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-tasks',
@@ -24,7 +20,7 @@ import { SideBarService } from '../side-bar/side-bar.service';
   styleUrls: ['./tasks.component.scss'],
   animations: [openCloseAnimation, fadeInAnimation],
 })
-export class TasksComponent implements OnInit, AfterViewInit {
+export class TasksComponent implements OnInit {
   lists!: string[];
   priorities!: priorityStatus[];
   multiSelect!: Boolean;
@@ -34,6 +30,9 @@ export class TasksComponent implements OnInit, AfterViewInit {
   listMenu!: Boolean;
   sideBarOpen!: boolean;
   subscription = new Subscription();
+  isSmallScreen$ = this.breakpointObserver
+    .observe([Breakpoints.XSmall, '(max-width: 768px)'])
+    .pipe(map((result: any) => result.matches));
   constructor(
     private sbService: SideBarService,
     private taskListService: TaskEditService,
@@ -42,7 +41,8 @@ export class TasksComponent implements OnInit, AfterViewInit {
     private router: Router,
     private route: ActivatedRoute,
     private matDialog: MatDialog,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private breakpointObserver: BreakpointObserver
   ) {}
   ngOnInit(): void {
     this.subscription.add(
@@ -92,12 +92,6 @@ export class TasksComponent implements OnInit, AfterViewInit {
         this.priorities = data.priorityStatuses;
       })
     );
-  }
-  ngAfterViewInit(): void {
-    // const animation = document.querySelector('.container');
-    // console.log(animation);
-    // (animation as HTMLElement).style.background = 'none';
-    // console.log((animation as HTMLElement).style.backgroundColor);
   }
   clearDoneTasks() {
     if (this.multiSelect) {

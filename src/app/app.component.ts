@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   imageUrl!: string;
   firstVisit = false;
   isSmallScreen$ = this.breakpointObserver
-    .observe([Breakpoints.XSmall])
+    .observe([Breakpoints.XSmall, '(max-width: 768px)'])
     .pipe(map((result: any) => result.matches));
   constructor(
     private sbService: SideBarService,

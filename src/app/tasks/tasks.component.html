@@ -1,5 +1,11 @@
 <div class="container" @fadeIn>
-  <div class="list-information" [@openClose]="sideBarOpen ? 'open' : 'close'">
+  <div
+    class="list-information"
+    [class.list-info-small]="isSmallScreen$ | async"
+    [@openClose]="
+      !(isSmallScreen$ | async) ? (sideBarOpen ? 'open' : 'close') : ''
+    "
+  >
     <div class="page-title">
       {{ pageTitle }}
     </div>
@@ -30,7 +36,12 @@
       />
     </div>
   </div>
-  <div class="tasks-container" [@openClose]="sideBarOpen ? 'open' : 'close'">
+  <div
+    class="tasks-container"
+    [@openClose]="
+      !(isSmallScreen$ | async) ? (sideBarOpen ? 'open' : 'close') : ''
+    "
+  >
     <router-outlet></router-outlet>
   </div>
   <div class="multi-select-container" *ngIf="multiSelect">

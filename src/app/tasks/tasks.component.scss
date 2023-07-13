@@ -21,9 +21,9 @@
   width: fit-content;
   height: 40px;
   padding: 0 20px;
-  margin-top: 25px;
-  margin-left: 10px;
-  position: fixed;
+  position: absolute;
+  top: 25px;
+  left: 10px;
   display: flex;
   gap: 10px;
   align-items: center;
@@ -34,6 +34,9 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+.list-info-small {
+  left: 100px !important;
 }
 .page-title {
   font-size: 20px;

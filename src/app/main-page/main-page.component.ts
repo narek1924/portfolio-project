@@ -22,7 +22,7 @@ export class MainPageComponent implements OnInit {
   dragging!: boolean;
   subscriptions = new Subscription();
   isSmallScreen$ = this.breakpointObserver
-    .observe([Breakpoints.XSmall])
+    .observe([Breakpoints.XSmall, '(max-width: 768px)'])
     .pipe(map((result: any) => result.matches));
   constructor(
     private SbService: SideBarService,

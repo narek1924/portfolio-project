@@ -11,7 +11,8 @@ import { priorityStatus } from 'src/app/shared/interfaces/task.interface';
 export class EditModalComponent implements OnInit {
   lists!: string[];
   priorities!: priorityStatus[];
-  current!: string | priorityStatus;
+  currentList!: string;
+  currentPriority!: priorityStatus;
   dataToReturn: any = {
     type: 'cancel',
   };
@@ -28,17 +29,17 @@ export class EditModalComponent implements OnInit {
     if (this.info.type === 'lists') {
       this.lists = [...(this.info.data as string[])];
       if (this.info.current) {
-        this.current = this.info.current;
+        this.currentList = this.info.current as string;
       }
     } else {
       this.priorities = [...(this.info.data as priorityStatus[])];
       if (this.info.current) {
-        this.current = this.info.current;
+        this.currentPriority = this.info.current as priorityStatus;
       }
     }
   }
   returnData(type: string, data: string | priorityStatus) {
-    if (data === this.current) {
+    if (data === this.currentList || data === this.currentPriority) {
       return;
     }
     this.matDialogRef.close({ type: type, data: data });

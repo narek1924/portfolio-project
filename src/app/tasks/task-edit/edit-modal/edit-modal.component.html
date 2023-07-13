@@ -9,11 +9,11 @@
         class="list-item lists"
         *ngFor="let list of lists"
         (click)="returnData('list', list)"
-        [class.selected]="list === current"
+        [class.selected]="list === currentList"
       >
         <div>{{ list }}</div>
         <img
-          *ngIf="current === list"
+          *ngIf="currentList === list"
           class="svg-icon"
           src="/assets/svg-icons/selected-icon.svg"
           alt=""
@@ -28,11 +28,11 @@
         *ngFor="let status of priorities"
         [style.background-color]="status.color"
         (click)="returnData('priority', status)"
-        [class.selected]="status === current"
+        [class.selected]="status === info.current"
       >
         <div>{{ status.status }}</div>
         <img
-          *ngIf="current === status"
+          *ngIf="currentPriority.status === status.status"
           class="svg-icon"
           src="/assets/svg-icons/selected-icon.svg"
           alt=""

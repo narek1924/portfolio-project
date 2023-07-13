@@ -31,16 +31,6 @@
   z-index: 1000;
   cursor: pointer;
 }
-.info-icon {
-  width: 18px;
-  position: absolute;
-  top: 10px;
-  left: 84%;
-  cursor: pointer;
-  &:hover {
-    filter: var(--brand-color-filter);
-  }
-}
 .icon-wrapper {
   display: flex;
   justify-content: center;

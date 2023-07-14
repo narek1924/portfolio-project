@@ -32,7 +32,7 @@
       >
         <div>{{ status.status }}</div>
         <img
-          *ngIf="currentPriority.status === status.status"
+          *ngIf="currentPriority && currentPriority.status === status.status"
           class="svg-icon"
           src="/assets/svg-icons/selected-icon.svg"
           alt=""

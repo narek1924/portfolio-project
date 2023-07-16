@@ -1,0 +1,336 @@
+.auth-login {
+  height: 100%;
+  position: relative;
+}
+.loading-spinner {
+  position: absolute;
+  top: 40%;
+  left: 37%;
+}
+.auth-step {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  overflow: hidden;
+  transition: opacity 0.5s;
+}
+.auth-step-loading {
+  opacity: 0;
+}
+
+.auth-card {
+  display: flex;
+  align-items: center;
+  width: 320px;
+  height: 60px;
+  padding: 0 20px;
+  border-radius: 50px;
+}
+.google {
+  display: flex;
+  align-items: center;
+  background-color: var(--brand-color);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+}
+.google-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 50%;
+  > img {
+    width: 18px;
+    height: 18px;
+  }
+}
+.google-auth-text {
+  flex: 1;
+}
+.google-auth-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+}
+.google-auth-subtitle {
+  font-size: 15px;
+  font-weight: 300;
+  color: white;
+  text-align: center;
+}
+.form-wrapper {
+  display: flex;
+  border: 1px solid #d8d8d8;
+  &:hover {
+    border: 1px solid var(--brand-color);
+  }
+
+  &:focus-within {
+    border: 1px solid var(--brand-color);
+  }
+}
+.form {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-family: inherit;
+  font-weight: 500;
+  &::placeholder {
+    color: #cbcbcb;
+    font-weight: 500;
+  }
+  &:disabled {
+    background-color: #fff;
+    cursor: not-allowed;
+  }
+}
+.check-email-button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #1c6ae0;
+
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  cursor: pointer;
+  &:disabled {
+    background-color: #fff;
+    border: 1px solid #d8d8d8;
+    cursor: default;
+    > .svg-icon {
+      filter: invert(100%) sepia(0%) saturate(7435%) hue-rotate(168deg)
+        brightness(127%) contrast(69%);
+    }
+  }
+}
+.svg-icon {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  transform: rotate(90deg);
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(163deg)
+    brightness(103%) contrast(102%);
+}
+.back {
+  transform: rotate(-90deg);
+  filter: invert(0%) sepia(0%) saturate(19%) hue-rotate(313deg) brightness(105%)
+    contrast(105%);
+  cursor: pointer;
+  &:hover {
+    filter: var(--brand-color-filter);
+  }
+}
+.header {
+  display: flex;
+  align-items: center;
+}
+.registration-header {
+  width: 280px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+.email-approved-icon {
+  width: 24px;
+  filter: var(--brand-color-filter);
+}
+.show-password {
+  padding: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  &:active {
+    > img {
+      filter: var(--brand-color-filter);
+    }
+  }
+}
+.submit-button {
+  justify-content: center;
+  background-color: var(--brand-color);
+  border: none;
+  outline: none;
+  font-size: 17px;
+  font-family: inherit;
+  color: #fff;
+  cursor: pointer;
+  &:disabled {
+    cursor: default;
+    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.5);
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+}
+.recover-button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 320px;
+  height: 60px;
+}
+.recover-button {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--brand-color);
+  font-size: 17px;
+  font-family: inherit;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(85%);
+  }
+}
+.reset-password {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 0 16px;
+}
+.button-reset {
+  width: 100%;
+  height: 44px;
+  margin-bottom: 25px;
+  background-color: var(--brand-color);
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 15px;
+  color: white;
+  cursor: pointer;
+  &:hover {
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+  }
+}
+.email-sent {
+  color: var(--brand-color);
+  font-weight: 500;
+  text-align: center;
+}
+p {
+  text-align: center;
+}
+.error-text {
+  color: red;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .auth-step {
+    align-items: center;
+    width: 260px;
+  }
+  .header {
+    width: 260px;
+  }
+  .auth-card {
+    width: 260px;
+  }
+  .form {
+    font-size: 14px;
+  }
+  .check-email-button {
+    width: 36px;
+    height: 36px;
+  }
+  .svg-icon {
+    width: 18px;
+    height: 18px;
+  }
+  .email-approved-icon {
+    width: 20px;
+  }
+  .google-auth-title {
+    font-size: 16px;
+  }
+  .google-auth-subtitle {
+    font-size: 13px;
+  }
+  .registration-header {
+    font-size: 18px;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 768px) {
+  .auth-step {
+    align-items: center;
+    width: 200px;
+  }
+  .header {
+    width: 180px;
+  }
+  .decoration {
+    width: 180px;
+    height: 80%;
+  }
+  .auth-card {
+    width: 200px;
+    height: 40px;
+  }
+  .google-icon {
+    width: 22px;
+    height: 22px;
+    > img {
+      width: 15px;
+      height: 15px;
+    }
+  }
+  .form {
+    font-size: 12px;
+    width: 120px;
+  }
+  .check-email-button {
+    width: 24px;
+    height: 24px;
+  }
+  .svg-icon {
+    width: 14px;
+    height: 13px;
+  }
+  .email-approved-icon {
+    width: 16px;
+  }
+  .password-visible-icon {
+    width: 20px;
+  }
+  .recover-button {
+    font-size: 14px;
+  }
+  .recover-button {
+    font-size: 14px;
+  }
+  .google-auth-title {
+    font-size: 11px;
+  }
+  .google-auth-subtitle {
+    font-size: 10px;
+  }
+  .registration-header {
+    font-size: 15px;
+  }
+  app-loading-spinner-small {
+    width: 18px;
+    height: 18px;
+  }
+}

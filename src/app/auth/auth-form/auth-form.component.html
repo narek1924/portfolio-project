@@ -1,0 +1,161 @@
+<div class="auth-login" [@.disabled]="animationDisabled">
+  <div class="loading-spinner" *ngIf="isLoading && !firstStep">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div class="auth-step" *ngIf="firstStep" @firstStepAnimation>
+    <button class="auth-card google" (click)="googleSignIn()">
+      <div class="google-icon">
+        <img src="/assets/svg-icons/google-icon.svg" alt="" />
+      </div>
+      <div class="google-auth-text">
+        <div class="google-auth-title">Continue with google</div>
+        <div class="google-auth-subtitle">Secured log-in</div>
+      </div>
+    </button>
+    <form (submit)="checkEmail()" [formGroup]="registerForm">
+      <div class="auth-card form-wrapper">
+        <input
+          formControlName="email"
+          class="form"
+          placeholder="Enter your work email"
+        />
+
+        <button
+          type="submit"
+          class="check-email-button"
+          [disabled]="registerForm.get('email')!.invalid"
+        >
+          <img
+            *ngIf="!isLoading"
+            class="svg-icon"
+            src="/assets/svg-icons/arrow-icon.svg"
+          />
+          <app-loading-spinner-small
+            *ngIf="isLoading"
+          ></app-loading-spinner-small>
+        </button>
+      </div>
+    </form>
+  </div>
+  <form
+    class="auth-step"
+    [class.auth-step-loading]="isLoading"
+    [formGroup]="registerForm"
+    *ngIf="!firstStep && !passwordReset"
+    @nextStepAnimation
+  >
+    <div class="header" *ngIf="!firstStep">
+      <img
+        src="/assets/svg-icons/arrow-icon.svg"
+        alt="back to first step button"
+        class="svg-icon back"
+        (click)="backToFirstStep()"
+      />
+      <h3 class="registration-header">
+        {{ !isRegistered ? "Welcome to my app" : "Welcome Back!" }}
+      </h3>
+    </div>
+    <div class="auth-card form-wrapper">
+      <input class="form" formControlName="email" autocomplete="email" />
+      <img
+        src="/assets/svg-icons/email-approved.svg"
+        alt="email-approved icon"
+        class="email-approved-icon"
+      />
+    </div>
+    <div class="auth-card form-wrapper" *ngIf="!isRegistered">
+      <input
+        class="form"
+        formControlName="name"
+        placeholder="Full name"
+        autocomplete="cc-given-name"
+      />
+    </div>
+    <div class="auth-card form-wrapper">
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        class="form"
+        formControlName="password"
+        placeholder="Password"
+        [autocomplete]="isRegistered ? 'current-password' : ''"
+      />
+      <button
+        type="button"
+        class="show-password"
+        (click)="showPassword = !showPassword"
+      >
+        <img
+          class="password-visible-icon"
+          [src]="
+            showPassword
+              ? '/assets/svg-icons/password-visible.svg'
+              : '/assets/svg-icons/password-hidden.svg'
+          "
+          alt="password-visible-icon"
+        />
+      </button>
+    </div>
+    <div
+      @item
+      class="auth-card form-wrapper"
+      *ngIf="registerForm.get('password')?.valid && !isRegistered"
+    >
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        class="form"
+        formControlName="confirmPassword"
+        placeholder="Confirm password"
+      />
+    </div>
+    <div class="recover-button-wrapper" *ngIf="isRegistered">
+      <button type="button" class="recover-button" (click)="resetPassword()">
+        Forgot password?
+      </button>
+    </div>
+    <button
+      (click)="submitData()"
+      type="submit"
+      class="auth-card submit-button"
+      [disabled]="
+        isRegistered
+          ? registerForm.get('email')?.invalid ||
+            registerForm.get('password')?.invalid
+          : registerForm.invalid ||
+            registerForm.get('password')?.value !==
+              registerForm.get('confirmPassword')?.value
+      "
+    >
+      {{ isRegistered ? "Sign in" : "Create account" }}
+    </button>
+    <span *ngIf="error" class="error-text">{{ error }}</span>
+  </form>
+  <div class="auth-step" *ngIf="passwordReset" @nextStepAnimation>
+    <div class="header">
+      <img
+        src="/assets/svg-icons/arrow-icon.svg"
+        alt="back to first step button"
+        class="svg-icon back"
+        (click)="backToAuth()"
+      />
+      <h3 class="registration-header" style="width: 325px">Reset password</h3>
+    </div>
+    <div class="reset-password">
+      <p>We will send instructions to this email address:</p>
+      <p style="font-weight: 600">{{ registerForm.get("email")!.value }}</p>
+      <button
+        *ngIf="!emailSent"
+        class="button-reset"
+        (click)="sendResetEmail()"
+      >
+        <app-loading-spinner-small
+          *ngIf="sendingEmail"
+        ></app-loading-spinner-small>
+        <p *ngIf="!sendingEmail">Reset Password</p>
+      </button>
+      <p class="email-sent" *ngIf="emailSent">
+        Email sent, <br />
+        Please check your inbox.
+      </p>
+    </div>
+  </div>
+</div>

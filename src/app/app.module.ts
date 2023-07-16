@@ -10,7 +10,6 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { MyDayContentComponent } from './my-day/my-day-content/my-day-content.component';
 import { appReducer } from './shared/app-state/reducers';
 import { MyDaySuggestionsComponent } from './my-day/my-day-suggestions/my-day-suggestions.component';
-import { AuthComponent } from './auth/auth/auth.component';
 import {
   TransitionGroupComponent,
   TransitionGroupItemDirective,
@@ -31,7 +30,6 @@ import { FirstVisitComponent } from './first-visit/first-visit.component';
     MainPageComponent,
     MyDayContentComponent,
     MyDaySuggestionsComponent,
-    AuthComponent,
     TransitionGroupComponent,
     TransitionGroupItemDirective,
     FetchLoadingComponent,

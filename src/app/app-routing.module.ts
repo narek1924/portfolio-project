@@ -13,8 +13,9 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    component: AuthComponent,
-    canActivate: [LoginGuard],
+    loadChildren: () => {
+      return import('./auth/auth/auth.module').then((m) => m.AuthModule);
+    },
   },
   { path: 'my-day', component: MyDayComponent, canActivate: [AuthGuard] },
   {

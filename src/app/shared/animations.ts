@@ -91,6 +91,21 @@ export const openCloseAnimation = trigger('openClose', [
   ),
   transition('open <=> close', [animate('100ms')]),
 ]);
+export const taskInfoAnimation = trigger('taskInfo', [
+  state(
+    'open',
+    style({
+      left: '100px',
+    })
+  ),
+  state(
+    'close',
+    style({
+      left: '250px',
+    })
+  ),
+  transition('open <=> close', [animate('207ms linear')]),
+]);
 export const firstElementAnimation = trigger('first-one', [
   transition(':enter', [
     style({ opacity: 0, transform: 'translateY(30px)' }),

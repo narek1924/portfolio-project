@@ -1,0 +1,49 @@
+<div
+  class="content-box"
+  #tasksWrapper
+  cdkDropList="i"
+  (cdkDropListDropped)="drop($event)"
+  [cdkDropListData]="tasks"
+>
+  <div
+    *ngFor="let task of tasks | sort; let j = index"
+    class="task-card"
+    [class.task-selected]="selectedTasks.includes(task.creationTime)"
+    cdkDrag
+    (cdkDragStarted)="onDragStarted()"
+    (click)="onEdit(task)"
+  >
+    <input
+      (change)="onCheckboxChange(task, $event)"
+      [disabled]="multiSelect"
+      (click)="$event.stopPropagation()"
+      [checked]="task.done"
+      class="checkbox"
+      type="checkbox"
+    />
+    <div class="task-card-content">
+      <div class="task-card-subtitle">{{ task.list }}</div>
+      <div
+        class="task-card-name"
+        [style.width]="task.done ? '165px' : '194px'"
+        [class.task-card-name-done]="task.done"
+      >
+        {{ task.name }}
+      </div>
+      <span
+        *ngIf="task.priority && !task.done"
+        class="priority-indicator"
+        [style.background-color]="task.priority.color"
+      ></span>
+    </div>
+    <button
+      class="delete-task"
+      (click)="
+        multiSelect ? $event.stopPropagation() : deleteTask(task.creationTime)
+      "
+      *ngIf="task.done"
+    >
+      <img src="/assets/svg-icons/close-icon.svg" alt="delete-task-icon" />
+    </button>
+  </div>
+</div>

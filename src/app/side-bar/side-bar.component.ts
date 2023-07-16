@@ -44,8 +44,10 @@ export class SideBarComponent implements OnInit, OnDestroy {
       this.store.select('appState').subscribe((data) => {
         this.tasks = [...data.tasks];
         this.tasksLists = [...data.lists];
-        this.username = data.name;
-        this.name = data.name.split(' ')[0];
+        if (data.name) {
+          this.username = data.name;
+          this.name = data.name.split(' ')[0];
+        }
         this.cdRef.detectChanges();
       })
     );

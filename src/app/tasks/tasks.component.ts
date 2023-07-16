@@ -10,7 +10,11 @@ import { EditModalComponent } from './task-edit/edit-modal/edit-modal.component'
 import { AppState } from '../shared/app-state/reducers';
 import { priorityStatus } from '../shared/interfaces/task.interface';
 import { TasksStateService } from '../shared/app-state/tasks-state.service';
-import { fadeInAnimation, openCloseAnimation } from '../shared/animations';
+import {
+  fadeInAnimation,
+  openCloseAnimation,
+  taskInfoAnimation,
+} from '../shared/animations';
 import { SideBarService } from '../side-bar/side-bar.service';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
@@ -18,7 +22,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss'],
-  animations: [openCloseAnimation, fadeInAnimation],
+  animations: [openCloseAnimation, fadeInAnimation, taskInfoAnimation],
 })
 export class TasksComponent implements OnInit {
   lists!: string[];

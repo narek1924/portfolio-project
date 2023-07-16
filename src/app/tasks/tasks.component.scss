@@ -21,9 +21,8 @@
   width: fit-content;
   height: 40px;
   padding: 0 20px;
-  position: absolute;
-  top: 25px;
-  left: 10px;
+  position: fixed;
+  top: 26px;
   display: flex;
   gap: 10px;
   align-items: center;
@@ -76,8 +75,10 @@
   -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   -moz-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  // margin-bottom: 500px;
   z-index: 15;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .multi-select-content {
   height: 100%;

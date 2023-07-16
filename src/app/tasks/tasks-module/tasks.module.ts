@@ -7,7 +7,7 @@ import { TaskListSortPipe } from 'src/app/shared/pipes/task-list-sort.pipe';
 import { TasksWrapperComponent } from '../tasks-list/tasks-wrapper/tasks-wrapper.component';
 import { SharedModule } from 'src/app/shared/shared-module/shared.module';
 import { TasksRoutingModule } from './tasks-routing.module';
-import { CommonModule } from '@angular/common';
+import { SevenDaysTasksWrapperComponent } from '../next-seven-days/seven-days-tasks-wrapper/seven-days-tasks-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
     FilterByListPipe,
     TaskListSortPipe,
     TasksWrapperComponent,
+    SevenDaysTasksWrapperComponent,
   ],
   imports: [SharedModule, TasksRoutingModule],
   exports: [],

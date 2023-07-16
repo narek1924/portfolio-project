@@ -33,8 +33,9 @@ export class DataStorageService {
     let capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
     this.store.dispatch(new fromAppStateActions.addName(capitalizedName));
     this.store.dispatch(
-      new fromAppStateActions.fetchLists(['Personal', 'Groccery list', 'Work'])
+      new fromAppStateActions.fetchLists(['Personal', 'Grocery list', 'Work'])
     );
+    this.store.dispatch(new fromAppStateActions.resetTasks());
     return this.http.put(
       'https://portfolio-project-12-default-rtdb.firebaseio.com/users/' +
         id +

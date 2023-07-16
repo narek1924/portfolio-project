@@ -67,6 +67,7 @@ app-seven-days-tasks-wrapper {
 
   background-attachment: local, local, scroll, scroll;
   transition: height 1s;
+  scrollbar-width: thin;
 }
 .cards-wrapper {
   max-height: 75%;

@@ -31,6 +31,7 @@
 }
 .task-information {
   overflow: auto;
+  scrollbar-width: thin;
 }
 .tasks-list {
   display: flex;
@@ -39,9 +40,10 @@
 }
 app-tasks-wrapper {
   max-height: 90%;
-  overflow: overlay;
+  overflow: auto;
   position: relative;
   flex: 1;
+  scrollbar-width: thin;
 }
 .quick-add {
   height: fit-content;

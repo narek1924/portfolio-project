@@ -1,6 +1,6 @@
 .sidenav-container {
   position: relative;
-  width: 240px;
+  width: 238px;
   height: 100%;
   min-height: 100%;
   padding-top: 24px;
@@ -184,4 +184,5 @@
   flex-direction: column;
 
   overflow: auto;
+  scrollbar-width: thin;
 }
